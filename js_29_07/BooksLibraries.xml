@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<booksLibraries>
+    <bookLibrary>
+        <BookId>XML17001</BookId>
+		<LibraryId>03001</LibraryId>
+        <EntryId>BLX0001</EntryId>
+    </bookLibrary>
+    <bookLibrary>
+        <BookId>XML13203</BookId>
+		<LibraryId>80002</LibraryId>
+        <EntryId>BLX0002</EntryId>
+    </bookLibrary>
+	    <bookLibrary>
+        <BookId>XML60001</BookId>
+		<LibraryId>40301</LibraryId>
+        <EntryId>BLX0003</EntryId>
+    </bookLibrary>
+</booksLibraries>

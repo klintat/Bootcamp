@@ -1,0 +1,14 @@
+<customers>
+    <customer>
+        <firstname>Anna</firstname>
+        <lastname>Dubaku</lastname>
+        <email>ann.dub@gmail.com</email>
+        <phone>25454534</phone>
+    </customer>
+    <customer>
+        <firstname>Valya</firstname>
+        <lastname>Alexia</lastname>
+        <email>val.alex@gmail.com</email>
+        <phone>25954534</phone>
+    </customer>
+</customers>

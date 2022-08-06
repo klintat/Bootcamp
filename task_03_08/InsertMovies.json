@@ -1,0 +1,15 @@
+{
+    "movies": [{
+            "title": "What We Do in the Shadows",
+            "primary_director": "Jemaine Clement and Taika Waititi",
+            "year_released": "2014",
+            "genre": "mockumentary, horror comedy"
+        },
+        {
+            "title": "The Grand Budapest Hotel",
+            "primary_director": "Wes Anderson",
+            "year_released": "2014",
+            "genre": "comedy-drama"
+        }
+    ]
+}

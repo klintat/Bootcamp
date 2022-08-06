@@ -1,0 +1,76 @@
+{
+    "customers": [
+        {
+            "firstname": "Klinta",
+            "lastname": "Teberga",
+            "phone": "+37123456123",
+            "email": "teberga.klinta@gmail.com"
+        },
+        {
+            "firstname": "Emils",
+            "lastname": "Ezerins",
+            "phone": "+37123451234",
+            "email": "emils.ezerinsh@gmail.com"
+        },
+        {
+            "firstname": "Janis",
+            "lastname": "Berzins",
+            "phone": "+37126278945",
+            "email": "janis.berzins@gmail.com"
+        },
+        {
+            "firstname": "Martins",
+            "lastname": "Egle",
+            "phone": "+37199998888",
+            "email": "martins.egle@inbox.lv"
+        },
+        {
+            "firstname": "Juris",
+            "lastname": "Kalnins",
+            "phone": "+37177779999",
+            "email": "juris@gmail.com"
+        },
+        {
+            "firstname": "Jon",
+            "lastname": "Depp",
+            "phone": "+37123451234",
+            "email": "jondepp@gmail.com"
+        },
+        {
+            "firstname": "Emma",
+            "lastname": "Smith",
+            "phone": "243435365",
+            "email": "es@gmail.com"
+        },
+        {
+            "firstname": "Jack",
+            "lastname": "Smitins",
+            "phone": "243435423",
+            "email": "smit.j@yahoo.com"
+        },
+        {
+            "firstname": "Will",
+            "lastname": "Sparrow",
+            "phone": "243435423",
+            "email": "ws.jpar@yahoo.com"
+        },
+        {
+            "firstname": "Emma",
+            "lastname": "Smith",
+            "phone": "243435365",
+            "email": "es@gmail.com"
+        },
+        {
+            "firstname": "Jack",
+            "lastname": "Smitins",
+            "phone": "243435423",
+            "email": "smit.j@yahoo.com"
+        },
+        {
+            "firstname": "Will",
+            "lastname": "Sparrow",
+            "phone": "243435423",
+            "email": "ws.jpar@yahoo.com"
+        }
+    ]
+}
