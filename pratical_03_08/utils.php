@@ -66,7 +66,6 @@ function selectCustomers(mysqli $con, int $id = null): mysqli_result
     return $con->query($query);
 }
 
-
 function updateCustomer(
     mysqli $con,
     int $id,
@@ -94,7 +93,7 @@ function createCustomer(
     $prepStament->execute();
 }
 
-function saveFromFile(string $filename)
+function insertFromCSVFile(string $filename)
 {
     $file = fopen($filename, "r");
     if ($file == false) {
@@ -188,7 +187,7 @@ function saveCustomersToCSVFile(string $filename, mysqli $con)
     fclose($file);
 }
 
-function insertCustomersFromFile(string $filename, mysqli $con)
+function insertFromJSONFile(string $filename, mysqli $con)
 {
     $filecontent = file_get_contents($filename);
     $customersArr = json_decode($filecontent);
