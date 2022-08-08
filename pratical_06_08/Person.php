@@ -17,7 +17,7 @@ class Person
         $this->lastName = $lastName;
     }
 
-    public static function getPersonsFromDB()
+    public static function getPersonsFromDB(): array
     {
         return [];
     }
@@ -61,6 +61,15 @@ class Person
     public function __toString() ///represnt the Object as the String
     {
         return $this->getFullName();
+    }
+
+    public function getRowHtml(): string
+    {
+        return "<div class='row'>" . Person::getColHtml($this->name) . Person::getColHtml($this->lastName) . "</div>";
+    }
+    private static function getColHtml(string $element): string
+    {
+        return "<div class='col'>" . $element . "</div>";
     }
 }
 

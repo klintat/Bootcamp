@@ -1,0 +1,15 @@
+{
+    "customers": [{
+            "firstname": "Pola",
+            "lastname": "Sloan",
+            "phone": "293749235",
+            "email": "p.sloan@gmail.com"
+        },
+        {
+            "firstname": "Aila",
+            "lastname": "Fletcher",
+            "phone": "284343888",
+            "email": "ail.fletcher@yahho.com"
+        }
+    ]
+}
