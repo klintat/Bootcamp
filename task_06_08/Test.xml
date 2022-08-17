@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<movies>
+  <movie>
+    <title>Pirates of the Caribbean: Salazars Revenge</title>
+    <primary_director>Joachim Rønning and Espen Sandberg</primary_director>
+    <year_released>2017</year_released>
+    <genre>fantasy</genre>
+  </movie>
+  <movie>
+    <title>Harry Potter and Goblet of Fire</title>
+    <primary_director>Mike Newell</primary_director>
+    <year_released>2005</year_released>
+    <genre>fantasy</genre>
+  </movie>
+  <movie>
+    <title>The Hobbit: An Unexpected Journey</title>
+    <primary_director>Peter Jackson</primary_director>
+    <year_released>2012</year_released>
+    <genre>fantasy</genre>
+  </movie>
+  <movie>
+    <title>The Hobbit: The Desolation of Smaug</title>
+    <primary_director>Peter Jackson</primary_director>
+    <year_released>2013</year_released>
+    <genre>fantasy</genre>
+  </movie>
+  <movie>
+    <title>The Hobbit: The Battle of the Five Armies</title>
+    <primary_director>Peter Jackson</primary_director>
+    <year_released>2014</year_released>
+    <genre>fantasy</genre>
+  </movie>
+  <movie>
+    <title>The Lord of the Rings: The Return of the King</title>
+    <primary_director>Peter Jackson</primary_director>
+    <year_released>2003</year_released>
+    <genre>fantasy</genre>
+  </movie>
+  <movie>
+    <title>The Lord of the Rings: The Fellowship of the Ring</title>
+    <primary_director>Peter Jackson</primary_director>
+    <year_released>2001</year_released>
+    <genre>fantasy</genre>
+  </movie>
+  <movie>
+    <title>The Lord of the Rings: The Two Towers</title>
+    <primary_director>Peter Jackson</primary_director>
+    <year_released>2002</year_released>
+    <genre>fantasy</genre>
+  </movie>
+</movies>

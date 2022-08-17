@@ -3,8 +3,8 @@ include("../common/header.php");
 include("Person.php");
 include("MySimplePerson.php");
 
-$myPerson = \Demo\Person::getInstance("Arturs", "Olekss");
-// $myPerson->setData("Arturs", "Olekss");
+$myPerson = \Demo\Person::getInstance("Klinta", "Teberga");
+// $myPerson->setData("Klinta", "Teberga");
 echo $myPerson;
 echo "<br>" . $myPerson->getFullName() . "<br>";
 Demo\Person::increasePopulation();

@@ -1,0 +1,52 @@
+{
+    "movies": [
+        {
+            "title": "Pirates of the Caribbean: Salazars Revenge",
+            "primary_director": "Joachim R\u00f8nning and Espen Sandberg",
+            "year_released": "2017",
+            "genre": "fantasy"
+        },
+        {
+            "title": "Harry Potter and Goblet of Fire",
+            "primary_director": "Mike Newell",
+            "year_released": "2005",
+            "genre": "fantasy"
+        },
+        {
+            "title": "The Hobbit: An Unexpected Journey",
+            "primary_director": "Peter Jackson",
+            "year_released": "2012",
+            "genre": "fantasy"
+        },
+        {
+            "title": "The Hobbit: The Desolation of Smaug",
+            "primary_director": "Peter Jackson",
+            "year_released": "2013",
+            "genre": "fantasy"
+        },
+        {
+            "title": "The Hobbit: The Battle of the Five Armies",
+            "primary_director": "Peter Jackson",
+            "year_released": "2014",
+            "genre": "fantasy"
+        },
+        {
+            "title": "The Lord of the Rings: The Return of the King",
+            "primary_director": "Peter Jackson",
+            "year_released": "2003",
+            "genre": "fantasy"
+        },
+        {
+            "title": "The Lord of the Rings: The Fellowship of the Ring",
+            "primary_director": "Peter Jackson",
+            "year_released": "2001",
+            "genre": "fantasy"
+        },
+        {
+            "title": "The Lord of the Rings: The Two Towers",
+            "primary_director": "Peter Jackson",
+            "year_released": "2002",
+            "genre": "fantasy"
+        }
+    ]
+}
