@@ -31,6 +31,11 @@ class Customer extends Person
         ];
     }
 
+    public function getId()
+    {
+        return $this->id;
+    }
+
     public function getFirstname(): string
     {
         return $this->firstname;
@@ -119,6 +124,33 @@ class Customer extends Person
         $prepStament->execute();
     }
 
+    public static function updateCustomers(array $customers, mysqli $con = null)
+    {
+        if ($con === null) :
+            $con = connectToDB();
+        endif;
+
+        foreach ($customers as $customer) {
+            $customer->updateCustomer($con);
+        }
+    }
+
+    public function updateCustomer(mysqli $con = null)
+    {
+        $prepStament = $con->prepare("UPDATE customer SET firstname=?,
+        lastname=?,email=?, 
+        phone=? WHERE id=?");
+        $prepStament->bind_param(
+            "sssss",
+            $this->firstname,
+            $this->lastname,
+            $this->email,
+            $this->phone,
+            $this->id
+        );
+        $prepStament->execute();
+    }
+
     public static function insertFromJSONFile(string $filename, mysqli $con)
     {
         $filecontent = file_get_contents($filename);
@@ -137,7 +169,8 @@ class Customer extends Person
             $customer->firstname,
             $customer->lastname,
             $customer->phone,
-            $customer->email
+            $customer->email,
+            $customer->id
         );
     }
 
@@ -204,6 +237,12 @@ class Customer extends Person
                 <div class='col'>" . $this->phone .
             "</div>
             </div>";
+    }
+
+    public static function getCustomersFromJSON(string $filename)
+    {
+        $filecontent = file_get_contents('files\\' . $filename);
+        return $filecontent;
     }
 
     public static function getPersonDummy(): Person

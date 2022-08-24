@@ -37,7 +37,23 @@ class Customers extends React.Component {
             })
             custListUpdate.push(customer);
         }
-        
+
+        const headers = new Headers();
+        headers.append("Content-type", "application/json");
+        const self = this;
+        fetch("http://localhost/my-app-backend/updateCustomer.php", {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(custListUpdate)
+        }).then(function (response) {
+            response.json().then((body) => {
+                alert(body);
+                const customersInit = this.state.customers;
+                self.setCustomerTable(customersInit);
+                self.setState({ custToUpdate: [] });
+            })
+        })
+
     }
 
     updateCustomer = (id, fieldname, value) => {
@@ -71,6 +87,12 @@ class Customers extends React.Component {
         this.updateCustomer(id, fieldname, value);
     }
 
+    onCancel = () => {
+        const customers = this.state.customersInit;
+        this.setCustomerTable(customers);
+        this.setEditable();
+    }
+
     render() {
         return (
             <form method='POST'>
@@ -79,6 +101,9 @@ class Customers extends React.Component {
                 </button>
                 <button className='btn' onClick={this.onChangeSave} type="button">
                     Save
+                </button>
+                <button className='btn' onClick={this.onCancel} type="button">
+                    Cancel
                 </button>
                 <table>
                     <thead>
