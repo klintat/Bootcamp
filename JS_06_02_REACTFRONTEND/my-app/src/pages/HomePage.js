@@ -1,4 +1,4 @@
-import Customers from '../Customers';
+import CustomersDB from '../CustomersDB';
 import InputCustomer from '../InputCustomer';
 
 function HomePage() {
@@ -6,7 +6,7 @@ function HomePage() {
     return (
         <div>
             <InputCustomer></InputCustomer>
-            <Customers></Customers>
+            <CustomersDB></CustomersDB>
         </div>
     );
 }

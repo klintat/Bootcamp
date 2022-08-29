@@ -1,9 +1,13 @@
 <?php
 
-use Customer as GlobalCustomer;
+namespace App\Models;
 
-include("Person.php");
-include("utils.php");
+require_once("Person.php");
+
+use App\Controllers\Model;
+use DOMDocument;
+use mysqli;
+use stdClass;
 
 class Customer extends Person
 {
@@ -17,7 +21,7 @@ class Customer extends Person
         $this->phone = $phone;
         $this->email = $email;
         $this->id = $id;
-        $this->con = connectToDB();
+        $this->con = Model::connectToDB();
     }
 
     public function getCustomer(): array
@@ -56,11 +60,12 @@ class Customer extends Person
         return $this->email;
     }
 
+
     public static function selectCustomers(mysqli $con = null, int $id = null): array
     {
         if ($con === null) :
-            $con = connectToDB();
-        endif;
+            $con = Model::connectToDB();
+        endif;   
 
         if ($id === null || $id === 0)
             $query = "SELECT * FROM customer";
@@ -95,7 +100,7 @@ class Customer extends Person
     public static function createCustomer(Customer $customer, mysqli $con = null)
     {
         if ($con === null) :
-            $con = connectToDB();
+            $con = Model::connectToDB();
         endif;
 
         $prepStament = $con->prepare("INSERT INTO customer (firstname,lastname,email,phone) VALUES
@@ -113,7 +118,7 @@ class Customer extends Person
     public static function updateCustomers(array $customers, mysqli $con = null)
     {
         if ($con === null) :
-            $con = connectToDB();
+            $con = Model::connectToDB();
         endif;
 
         foreach ($customers as $customer) {
@@ -140,7 +145,7 @@ class Customer extends Person
     public static function createCustomers(array $customers, mysqli $con = null)
     {
         if ($con === null)
-            $con = connectToDB();
+            $con = Model::connectToDB();
         foreach ($customers as $customer) :
             Customer::createCustomer(
                 $customer,
@@ -155,8 +160,8 @@ class Customer extends Person
         $customersObj = json_decode($filecontent);
         foreach ($customersObj->customers as $customer) :
             Customer::createCustomer(
-                $con,
-                Customer::convertFromJSONToCustomer($customer)
+                Customer::convertFromJSONToCustomer($customer),
+                $con
             );
         endforeach;
     }
@@ -195,46 +200,6 @@ class Customer extends Person
     {
         $json = json_encode(array("customers" => $customers), JSON_PRETTY_PRINT);
         file_put_contents($filename, $json);
-    }
-
-    public static function generateCustomersTableHTML($customers): string
-    {
-        $customersTable =
-            "<b>
-        <div class='row'>
-            <div class='col'>
-                First name
-            </div>
-            <div class='col'>
-                Last name
-            </div>
-            <div class='col'>
-                E-Mail
-            </div>
-            <div class='col'>
-                Phone
-            </div>
-        </div>
-    </b>";
-
-        foreach ($customers as $customer) :
-            $customersTable .= $customer->getCustomerRow();
-        endforeach;
-        return $customersTable;
-    }
-
-    public function getCustomerRow()
-    {
-        return "<div class='row'>
-                <div class='col'>" . $this->firstname .
-            "</div>
-                <div class='col'>" . $this->lastname .
-            "</div>
-                <div class='col'>" . $this->email .
-            "</div>
-                <div class='col'>" . $this->phone .
-            "</div>
-            </div>";
     }
 
     public static function getCustomersFromJSON(string $filename): string

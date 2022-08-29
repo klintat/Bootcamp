@@ -1,5 +1,6 @@
 
 import React from 'react';
+import CustomersFile from '../CustomersFile';
 
 class LoadPage extends React.Component {
 
@@ -7,7 +8,8 @@ class LoadPage extends React.Component {
         super();
         this.state = {
             filename: "",
-            filepath: ""
+            filepath: "",
+            load: false
         }
     }
 
@@ -16,26 +18,13 @@ class LoadPage extends React.Component {
         this.setState({ filename: filename, filepath: event.target.value });
     }
 
-    onFileLoad = () => {
-        const headers = new Headers();
-        const self = this;
-        headers.append("Content-type", "application/json");
-        fetch("http://localhost/my-app-backend/getFileContent.php", {
-            method: "POST",
-            headers: headers,
-            body: JSON.stringify(self.state.filename)
-        }).then(function (response) {
-
-        })
-    }
-
     render() {
         return (
             <div>
                 <input type="file" value={this.state.filepath}
                     onChange={this.onFileNameChange}></input>
-                <button className='btn' onClick={() => { this.onFileLoad() }}>Load</button>
-
+                <button className='btn' onClick={() => { this.setState({ load: true }) }}>Load</button>
+                {this.state.load === true && <CustomersFile filename={this.state.filename}></CustomersFile>}
             </div>
         )
     }

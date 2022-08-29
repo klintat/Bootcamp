@@ -8,52 +8,63 @@ class Customers extends React.Component {
             customers: [],
             customersInit: [],
             editable: false,
-            custToUpdate: []
+            custToUpdate: [],
+            numberOfPages: 0,
+            currentPage: 1,
+            customersShown: []
         }
-        this.customersInit();
     }
 
-    customersInit = () => {
-        let self = this;
-        fetch("http://localhost/my-app-backend/customers.php", {
-            method: "GET"
-        }).then(function (response) {
-            if (response.ok) {
-                response.json().then(customers => {
-                    self.setCustomerTable(customers);
-                });
-            }
-        })
+    setPageShown = () => {
+        const startPos = (this.state.currentPage - 1) * 10;
+        let endPosit = startPos + 10;
+        if (endPosit + 1 > this.state.customers.length)
+            endPosit = this.state.customers.length;
+
+        const customersShown = [];
+        for (let i = startPos; i < endPosit; i++)
+            customersShown.push(this.state.customers[i]);
+        this.setState({ customersShown: customersShown });
+    }
+
+    componentDidMount() {
+        this.props.customersInit(this);
     }
 
     onChangeSave = () => {
-        const custListUpdate = [];
-        for (let i = 0; i < this.state.custToUpdate.length; i++) {
-            if (this.state.custToUpdate[i] !== true)
-                continue;
-            const customerId = i;
-            const customer = this.state.customers.find((customer) => {
-                return customer.id === customerId;
-            })
-            custListUpdate.push(customer);
+        let custListUpdate = [];
+        let link;
+        if (this.props.allNew) {
+            custListUpdate = this.state.customers;
+            link = "http://localhost/my-app-backend/createCustomers.php"
         }
-
+        else {
+            for (let i = 0; i < this.state.custToUpdate.length; i++) {
+                if (this.state.custToUpdate[i] !== true)
+                    continue;
+                const customerId = i;
+                const customer = this.state.customers.find((customer) => {
+                    return customer.id === customerId;
+                })
+                custListUpdate.push(customer);
+            }
+            link = "http://localhost/my-app-backend/updateCustomer.php";
+        }
         const headers = new Headers();
         headers.append("Content-type", "application/json");
         const self = this;
-        fetch("http://localhost/my-app-backend/updateCustomer.php", {
+        fetch(link, {
             method: "POST",
             headers: headers,
             body: JSON.stringify(custListUpdate)
         }).then(function (response) {
             response.json().then((body) => {
                 alert(body);
-                const customersInit = this.state.customers;
+                const customersInit = self.state.customers;
                 self.setCustomerTable(customersInit);
                 self.setState({ custToUpdate: [] });
             })
         })
-
     }
 
     updateCustomer = (id, fieldname, value) => {
@@ -73,7 +84,12 @@ class Customers extends React.Component {
         customersLoad.map((obj) => {
             initCustomers.push(Object.assign({}, obj));
         })
-        this.setState({ customers: initCustomers, customersInit: customersLoad });
+        const pagesNo = Math.floor(customersLoad.length / 10);
+        this.setState({
+            customers: initCustomers,
+            customersInit: customersLoad, numberOfPages: pagesNo
+        });
+        this.setPageShown();
     }
 
     setEditable = () => {
@@ -93,13 +109,57 @@ class Customers extends React.Component {
         this.setEditable();
     }
 
+    switchPageEvent = (event) => {
+        this.swtichPage(
+            Number(event.target.innerHTML));
+    }
+
+    swtichPage = (pageNo) => {
+        this.setState({ currentPage: pageNo });
+        this.setPageShown();
+    }
+
+    nextPage = () => {
+        this.swtichPage(++this.state.currentPage);
+    }
+
+    previousPage = () => {
+        this.swtichPage(--this.state.currentPage);
+    }
+
+    generatePageItems = () => {
+        const pagesArr = [];
+        if (this.state.currentPage > 1)
+            pagesArr.push(<li className="page-item" key={"prev"}>
+                <button type='button' className="btn btn-primary"
+                    onClick={this.previousPage}>Previous</button>
+            </li>)
+        for (let i = 1; i <= this.state.numberOfPages; i++) {
+            pagesArr.push(<li className="page-item" key={i}>
+                <button type='button' className="btn"
+                    onClick={this.switchPageEvent}>{i}</button>
+            </li>);
+        }
+        if (this.state.currentPage < this.state.numberOfPages)
+            pagesArr.push(<li className="page-item" key={"next"}>
+                <button type='button' className="btn btn-primary"
+                    onClick={this.nextPage}>Next</button>
+            </li>)
+        return pagesArr;
+    }
+
     render() {
         return (
             <form method='POST'>
+                <nav aria-label="Page navigation example">
+                    <ul className="pagination">
+                        {this.generatePageItems()}
+                    </ul>
+                </nav>
                 <button className='btn' type='button' onClick={this.setEditable}>
                     Edit
                 </button>
-                <button className='btn' onClick={this.onChangeSave} type="button">
+                <button className='btn' onClick={() => { this.onChangeSave() }} type="button">
                     Save
                 </button>
                 <button className='btn' onClick={this.onCancel} type="button">
@@ -116,7 +176,7 @@ class Customers extends React.Component {
                     </thead>
                     <tbody>
                         {
-                            !(this.state.customers === undefined) && this.state.customers.map((customer) => {
+                            !(this.state.customersShown === undefined) && this.state.customersShown.map((customer) => {
                                 return (
                                     <tr key={customer.id} onChange={
                                         (e) => this.onInputChange(e, customer.id)}>
@@ -126,7 +186,7 @@ class Customers extends React.Component {
                                             </div>
                                             <input hidden={!this.state.editable}
                                                 fieldname="firstname"
-                                                value={customer.firstname}></input>
+                                                defaultValue={customer.firstname}></input>
                                         </td>
                                         <td>
                                             <div hidden={this.state.editable}>
@@ -134,7 +194,7 @@ class Customers extends React.Component {
                                             </div>
                                             <input hidden={!this.state.editable}
                                                 fieldname="lastname"
-                                                value={customer.lastname}></input>
+                                                defaultValue={customer.lastname}></input>
                                         </td>
                                         <td>
                                             <div hidden={this.state.editable}>
@@ -142,7 +202,7 @@ class Customers extends React.Component {
                                             </div>
                                             <input hidden={!this.state.editable}
                                                 fieldname="email"
-                                                value={customer.email}></input>
+                                                defaultValue={customer.email}></input>
                                         </td>
                                         <td>
                                             <div hidden={this.state.editable}>
@@ -150,7 +210,7 @@ class Customers extends React.Component {
                                             </div>
                                             <input hidden={!this.state.editable}
                                                 fieldname="phone"
-                                                value={customer.phone}></input>
+                                                defaultValue={customer.phone}></input>
                                         </td>
                                     </tr>
                                 );
