@@ -3,6 +3,7 @@ import NavBar from './NavBar';
 import HomePage from './pages/HomePage';
 import React from 'react';
 import LoadPage from './pages/LoadPage';
+import EditPage from './pages/EditPage';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 class App extends React.Component {
@@ -26,6 +27,7 @@ class App extends React.Component {
             <Route path='/' element={<NavBar></NavBar>}>
               <Route index element={<HomePage></HomePage>}></Route>
               <Route path='loadPage' element={<LoadPage></LoadPage>}></Route>
+              <Route path='editPage' element={<EditPage></EditPage>}></Route>
             </Route>
           </Routes>
         </BrowserRouter>

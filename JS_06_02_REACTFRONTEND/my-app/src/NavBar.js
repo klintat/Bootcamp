@@ -14,6 +14,9 @@ import { Link, Outlet } from "react-router-dom";
                             <Link to="/loadPage">Load Page</Link>
                             {/* <button className="btn" onClick={() => openPage("LoadPage")}>Load from file</button> */}
                         </li>
+                        <li className="nav-item">
+                            <Link to="/editPage">Edit Page</Link>
+                        </li>
                     </ul>
                 </div>
             </nav>

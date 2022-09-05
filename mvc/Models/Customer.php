@@ -115,6 +115,11 @@ class Customer extends Person
         $prepStament->execute();
     }
 
+    public static function editCustomer(Customer $customer, mysqli $con = null)
+    {
+        // $customer->updateCustomer($con);
+    }
+
     public static function updateCustomers(array $customers, mysqli $con = null)
     {
         if ($con === null) :
