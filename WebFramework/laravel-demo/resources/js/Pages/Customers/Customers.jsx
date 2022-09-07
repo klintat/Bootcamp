@@ -1,3 +1,4 @@
+import Authenticated from '@/Layouts/Authenticated';
 import React from 'react';
 
 class Customers extends React.Component {
@@ -5,6 +6,8 @@ class Customers extends React.Component {
     constructor() {
         super();
         this.state = {
+            auth: null,
+            errors: null,
             csrf_token: "",
             customers: [],
             customersInit: [],
@@ -32,6 +35,7 @@ class Customers extends React.Component {
     componentDidMount() {
         this.props.customersInit(this);
         this.setToken(this.props.csrf_token);
+        this.setState({ auth: this.props.auth, errors: this.props.errors });
     }
 
     setToken = (token) => {
@@ -158,81 +162,91 @@ class Customers extends React.Component {
 
     render() {
         return (
-            <form method='POST'>
-                <input name="_token" hidden value={this.state.csrf_token} />
-                <nav aria-label="Page navigation example">
-                    <ul className="pagination">
-                        {this.generatePageItems()}
-                    </ul>
-                </nav>
+            <>
+                {!(this.state.auth === null) &&
+                    <Authenticated
+                        auth={this.state.auth}
+                        errors={this.state.errors}
+                        header={""}
+                    >
+                        <form method='POST'>
+                            <input name="_token" hidden value={this.state.csrf_token} />
+                            <nav aria-label="Page navigation example">
+                                <ul className="pagination">
+                                    {this.generatePageItems()}
+                                </ul>
+                            </nav>
 
-                {/* {this.state.user.roleID === 1 && */}
-                <div>
-                    <button className='btn' type='button' onClick={this.setEditable}>
-                        Edit
-                    </button>
-                    <button className='btn' onClick={() => { this.onChangeSave() }} type="button">
-                        Save
-                    </button>
-                    <button className='btn' onClick={this.onCancel} type="button">
-                        Cancel
-                    </button>
-                </div>
-                {/* } */}
-                <table>
-                    <thead>
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>E-Mail</th>
-                            <th>Phone</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            !(this.state.customersShown === undefined) && this.state.customersShown.map((customer) => {
-                                return (
-                                    <tr key={customer.id} onChange={
-                                        (e) => this.onInputChange(e, customer.id)}>
-                                        <td>
-                                            <div hidden={this.state.editable}>
-                                                {customer.firstname}
-                                            </div>
-                                            <input hidden={!this.state.editable}
-                                                fieldname="firstname"
-                                                defaultValue={customer.firstname}></input>
-                                        </td>
-                                        <td>
-                                            <div hidden={this.state.editable}>
-                                                {customer.lastname}
-                                            </div>
-                                            <input hidden={!this.state.editable}
-                                                fieldname="lastname"
-                                                defaultValue={customer.lastname}></input>
-                                        </td>
-                                        <td>
-                                            <div hidden={this.state.editable}>
-                                                {customer.email}
-                                            </div>
-                                            <input hidden={!this.state.editable}
-                                                fieldname="email"
-                                                defaultValue={customer.email}></input>
-                                        </td>
-                                        <td>
-                                            <div hidden={this.state.editable}>
-                                                {customer.phone}
-                                            </div>
-                                            <input hidden={!this.state.editable}
-                                                fieldname="phone"
-                                                defaultValue={customer.phone}></input>
-                                        </td>
+                            {/* {this.state.user.roleID === 1 && */}
+                            <div>
+                                <button className='btn' type='button' onClick={this.setEditable}>
+                                    Edit
+                                </button>
+                                <button className='btn' onClick={() => { this.onChangeSave() }} type="button">
+                                    Save
+                                </button>
+                                <button className='btn' onClick={this.onCancel} type="button">
+                                    Cancel
+                                </button>
+                            </div>
+                            {/* } */}
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>E-Mail</th>
+                                        <th>Phone</th>
                                     </tr>
-                                );
-                            })
-                        }
-                    </tbody>
-                </table>
-            </form>
+                                </thead>
+                                <tbody>
+                                    {
+                                        !(this.state.customersShown === undefined) && this.state.customersShown.map((customer) => {
+                                            return (
+                                                <tr key={customer.id} onChange={
+                                                    (e) => this.onInputChange(e, customer.id)}>
+                                                    <td>
+                                                        <div hidden={this.state.editable}>
+                                                            {customer.firstname}
+                                                        </div>
+                                                        <input hidden={!this.state.editable}
+                                                            fieldname="firstname"
+                                                            defaultValue={customer.firstname}></input>
+                                                    </td>
+                                                    <td>
+                                                        <div hidden={this.state.editable}>
+                                                            {customer.lastname}
+                                                        </div>
+                                                        <input hidden={!this.state.editable}
+                                                            fieldname="lastname"
+                                                            defaultValue={customer.lastname}></input>
+                                                    </td>
+                                                    <td>
+                                                        <div hidden={this.state.editable}>
+                                                            {customer.email}
+                                                        </div>
+                                                        <input hidden={!this.state.editable}
+                                                            fieldname="email"
+                                                            defaultValue={customer.email}></input>
+                                                    </td>
+                                                    <td>
+                                                        <div hidden={this.state.editable}>
+                                                            {customer.phone}
+                                                        </div>
+                                                        <input hidden={!this.state.editable}
+                                                            fieldname="phone"
+                                                            defaultValue={customer.phone}></input>
+                                                    </td>
+                                                </tr>
+                                            );
+                                        })
+                                    }
+                                </tbody>
+                            </table>
+                        </form>
+                    </Authenticated>
+                }
+            </>
         );
     }
 

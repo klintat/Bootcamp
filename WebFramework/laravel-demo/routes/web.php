@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CustomersController;
+use App\Http\Controllers\ProductsController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -25,9 +26,13 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get("/customers", [CustomersController::class, "showCustomers"])->middleware(['auth', 'verified']);
+Route::get('/products', [ProductsController::class, "showProducts"])
+    ->middleware(['auth', 'verified'])->name("products");
 
-Route::post("/customers-update",[CustomersController::class,"updateCustomer"]);
+Route::get("/customers", [CustomersController::class, "showCustomers"])
+    ->middleware(['auth', 'verified'])->name("customers");
+
+Route::post("/customers-update", [CustomersController::class, "updateCustomer"]);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

@@ -21,7 +21,8 @@ class CustomersDB extends React.Component {
 
     render() {
         return (
-           <Customers csrf_token={this.props.csrf_token} customersInit={this.customersInit}></Customers>
+            <Customers auth={this.props.auth} errors={this.props.errors}
+                csrf_token={this.props.csrf_token} customersInit={this.customersInit}></Customers>
         )
     }
 

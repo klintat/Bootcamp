@@ -21,8 +21,11 @@ export default function Authenticated({ auth, header, children }) {
                             </div>
 
                             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink href={route('dashboard')} active={route().current('dashboard')}>
-                                    Dashboard
+                                <NavLink href={route('customers')} active={route().current('customers')}>
+                                    Customers
+                                </NavLink>
+                                <NavLink href={route('products')} active={route().current('products')}>
+                                    Products
                                 </NavLink>
                             </div>
                         </div>
@@ -91,8 +94,11 @@ export default function Authenticated({ auth, header, children }) {
 
                 <div className={(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'}>
                     <div className="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
-                            Dashboard
+                        <ResponsiveNavLink href={route('customers')} active={route().current('customers')}>
+                            Customers
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('products')} active={route().current('products')}>
+                            Products
                         </ResponsiveNavLink>
                     </div>
 
@@ -117,7 +123,7 @@ export default function Authenticated({ auth, header, children }) {
                 </header>
             )}
 
-            <main>{children}</main>
+            <main className='container'>{children}</main>
         </div>
     );
 }
