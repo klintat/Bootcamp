@@ -25,6 +25,6 @@ include("header.php");
             </p>
             </div>
     </div>
-    <img src="/JS_pratical/photos/rest.jpg" alt="" class="w-100 mt-3">
+    <img src="/task_23_07/photos/rest.jpg" alt="" class="w-100 mt-3">
 </body>
 </html>

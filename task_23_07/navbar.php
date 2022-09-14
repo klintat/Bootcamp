@@ -1,7 +1,7 @@
 <nav class="navbar navbar-dark navbar-expand-lg bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="index.php">
-      <img src="/JS_PRATICAL/photos/logo.png" alt="logo" width="150">
+      <img src="/task_23_07/photos/logo.png" alt="logo" width="150">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
