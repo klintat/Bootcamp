@@ -43,7 +43,7 @@ class OrderController extends Controller
         endif;
     }
 
-    public static function createOrder($products)
+    public static function createOrder($products): int
     {
         $order = new Order();
 
@@ -57,5 +57,7 @@ class OrderController extends Controller
             $orderItem->quantity = $product["quantity"];
             $orderItem->save();
         endforeach;
+
+        return $order->id;
     }
 }

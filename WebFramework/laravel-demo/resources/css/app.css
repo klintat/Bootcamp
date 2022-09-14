@@ -67,3 +67,20 @@
 .btn-primary {
     color: black;
 }
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(5, 200px);
+}
+
+.inline {
+    display: -webkit-inline-box;
+}
+
+.click {
+    cursor: pointer;
+}
+
+.plusminus {
+    margin: 0.3px;
+}

@@ -1,4 +1,6 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react"
+import { faTrash, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 
 export default function Basket(props) {
 
@@ -19,6 +21,56 @@ export default function Basket(props) {
         changeProducts([]);
         sessionStorage.removeItem("products");
         window.location.reload();
+    }
+
+    const changeQuantity = (id, quantity) => {
+
+        let basket = JSON.parse(sessionStorage.getItem("basket"));
+
+        const productInBasket = basket.find((product) => {
+            return product.id == id;
+        })
+
+        if (productInBasket.quantity === -quantity) {
+            removeProductFromBask(id);
+            return;
+        }
+        productInBasket.quantity += quantity;
+
+        const productsUpdated = JSON.parse(sessionStorage.getItem("products"));
+        const product = productsUpdated.find((product) => {
+            return product.id === id;
+        });
+
+        product.stockquantity += -quantity;
+
+        sessionStorage.setItem("products", JSON.stringify(productsUpdated));
+        sessionStorage.setItem("basket", JSON.stringify(basket));
+        window.location.reload();
+    }
+
+    const removeProductFromBask = (id) => {
+
+        let basket = JSON.parse(sessionStorage.getItem("basket"));
+
+        const productInBasket = basket.find((product) => {
+            return product.id == id;
+        })
+
+        const productsUpdated = JSON.parse(sessionStorage.getItem("products"));
+        const product = productsUpdated.find((product) => {
+            return product.id === id;
+        });
+
+        product.stockquantity += productInBasket.quantity;
+        basket = basket.filter(function (product) {
+            return product.id !== id;//remove product from basket
+        })
+
+        sessionStorage.setItem("products", JSON.stringify(productsUpdated));
+        sessionStorage.setItem("basket", JSON.stringify(basket));
+        window.location.reload();
+
     }
 
     const onBuy = () => {
@@ -43,7 +95,25 @@ export default function Basket(props) {
                             {product.name}
                         </div>
                         <div className="col">
+                            <FontAwesomeIcon icon={faMinus}
+                                onClick={() => {
+                                    changeQuantity(product.id, -1)
+                                }}
+                                className="plusminus click" />
                             {product.quantity}
+                            <FontAwesomeIcon icon={faPlus}
+                                className="plusminus click"
+                                onClick={() => {
+                                    changeQuantity(product.id, 1)
+                                }}
+                            />
+                        </div>
+                        <div className="col">
+                            <a className="click" onClick={() => {
+                                removeProductFromBask(product.id);
+                            }}>
+                                <FontAwesomeIcon icon={faTrash} />
+                            </a>
                         </div>
                     </div>)
             })}
