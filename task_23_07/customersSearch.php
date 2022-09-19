@@ -1,14 +1,7 @@
 <html>
 <?php
-  CREATE TABLE code (
- id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
- firstname VARCHAR(50) NOT NULL,
- lastname VARCHAR(50) NOT NULL,
- email VARCHAR(50) NOT NULL
- phone  NUMBER NOT NULL,
- FULLTEXT (title,code)
-) TYPE = MYISAM;  
 
+// customers ID field
 
 ?>
 </html>

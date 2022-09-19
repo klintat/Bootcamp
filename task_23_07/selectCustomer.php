@@ -13,7 +13,7 @@
     $errorMessage = $connection->connect_error;
     }
     else {
-        $querry = "SELECT * FROM customers WHERE id = ". $_POST["CustomerId"] ." ";
+        $querry = "SELECT * FROM customers WHERE id = ". $_POST["CustomerId"] ." "; // concatination ?
         $result = $connection->query($querry);
         if ($result->num_rows == 0) {
             $errorMessage = "No entries found."; 
