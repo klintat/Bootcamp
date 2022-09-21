@@ -3,10 +3,11 @@ const randomstring = require("randomstring");
 const querystring = require("node:querystring");
 const app = express();
 const request = require("request");
+require("dotenv").config();
 
-const redirect_uri = 'http://localhost:5000/callback';
-const client_id = "e6367f36d485480994f94090e941ad9f";
-const client_secret = "4977d96e6a2a4028a1625665c15c22cd";
+const redirect_uri = process.env.APP_HOST + '/callback';
+const client_id = process.env.CLIENT_ID;
+const client_secret = process.env.CLIENT_SECRET;
 
 app.get('/login', function(req, res) {
 
@@ -35,6 +36,7 @@ app.get("/callback", function(req, res) {
                 error: 'state_mismatch'
             }));
     } else {
+        // Buffer.from(client_id + ':' + client_secret).toString('base64');
         const authOptions = {
             url: 'https://accounts.spotify.com/api/token',
             form: {
@@ -43,14 +45,14 @@ app.get("/callback", function(req, res) {
                 grant_type: 'authorization_code'
             },
             headers: {
-                'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))
+                'Authorization': 'Basic ' + (Buffer.from(client_id + ':' + client_secret).toString('base64'))
             },
             json: true
         };
         request.post(authOptions, function(error, response, body) {
             if (!error && response.statusCode === 200) {
                 const access_token = body.access_token;
-                res.redirect("http://localhost:3000/?token=" + access_token);
+                res.redirect(process.env.APP_FRONT_HOST + "/?token=" + access_token);
             }
         });
     }
