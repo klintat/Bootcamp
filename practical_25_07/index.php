@@ -56,7 +56,7 @@ echo boolval(1=="1");//prints 1 (true)
 echo "<br>";
 echo boolval(1=="1");// prints space (false);
 
-$result = (true) ? "true" : "false";
+$result = ("1" == 1) ? "true" : "false";
 echo ($result) ;//prints 1 (true)
 echo "<br>";
 echo 1 === "1" ? "true" : "false";// prints space (false);
@@ -74,5 +74,11 @@ echo 1 === "1" ? "true" : "false";// prints space (false);
     <?= $var . $nd //display the first part but trigger the warning after that ?>
 
     <?= $var2 ?>
+
+    <?php
+    foreach($arr2 as $key => $value) :
+        echo "<h1>Key : ". $key .", Value : " . $value . "</h1>";
+    endforeach;
+    ?>
 
 </body>
