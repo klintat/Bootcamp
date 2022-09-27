@@ -18,7 +18,7 @@ class UserAuth
     {
         if($request->path()=="login" && $request->session()->has('user'))
         {
-            returnredirect('/');
+            return redirect('/');
         }
         return $next($request);
     }
