@@ -23,16 +23,17 @@
             </tbody>
         </table>
         <div>
-            <form>
+            <form action="/orderplace" method="POST">
+                @csrf
                 <div class="mb-3">
-                    <textarea type="email" class="form-control" placeholder="enter your addres" aria-describedby="emailHelp"></textarea>
+                    <textarea name="address" class="form-control" placeholder="enter your address" aria-describedby="emailHelp"></textarea>
                     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                 </div>
                 <div class="form-group">
                     <label for="pwd">Payment Method</label><br></br>
-                    <input type="radio" name="payment"> <span>Online payment</span><br></br>
-                    <input type="radio" name="payment"> <span>EMI payment</span><br></br>
-                    <input type="radio" name="payment"> <span>Payment on delivery</span><br></br>
+                    <input type="radio" value="cash" name="payment"> <span>Online payment</span><br></br>
+                    <input type="radio" value="cash" name="payment"> <span>EMI payment</span><br></br>
+                    <input type="radio" value="cash" name="payment"> <span>Payment on delivery</span><br></br>
                 </div>
                 <button type="submit" class="btn btn-primary">Order Now</button>
             </form>
