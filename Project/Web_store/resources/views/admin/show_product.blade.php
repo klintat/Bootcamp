@@ -86,7 +86,7 @@
                         </td>
 
                         <td>
-                            <a class="btn btn-warning" href="">Edit</a>
+                            <a class="btn btn-warning" href="{{url('update_product',$product->id)}}">Edit</a>
                         </td>
                     </tr>
                     @endforeach
