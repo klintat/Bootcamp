@@ -43,6 +43,18 @@
             background: lightpink;
         }
 
+        .img_deg
+        {
+            height: 200px;
+            width: 200px;
+        }
+
+        .total_deg
+        {
+            font-size: 20px;
+            padding: 40px;
+        }
+
       </style>
    </head>
    <body>
@@ -59,24 +71,33 @@
                     <th class="th_deg">Image</th>
                     <th class="th_deg">Action</th>
                 </tr>
+
+                <?php $totalprice=0; ?>
+
+                @foreach ($cart as $cart)
                 <tr>
-                    <td>shirt</td>
-                    <td>11</td>
-                    <td>11</td>
-                    <td></td>
-                    <td>remove</td>
+                    <td>{{$cart->product_title}}</td>
+                    <td>{{$cart->quantity}}</td>
+                    <td>{{$cart->price}}</td>
+                    <td><img class="img_deg "src="/product/{{$cart->image}}"></td>
+                    <td><a class="btn btn-danger" onclick="return confirm('Product will be removed from cart!')" href="{{url('remove_cart', $cart->id)}}">Remove Product</a></td>
                 </tr>
+                <?php $totalprice=$totalprice + $cart->price ?>
+                @endforeach
+
+                {{$totalprice}}
             </table>
-        </div>
-        
+
+            <div>
+                <h1 class="total_deg">Total Price : {{$totalprice}}</h1>
+            </div>
+
+    </div>
         <!-- footer start -->
-        @include('home.footer') 
         <!-- footer end -->
       <div class="cpy_">
          <p class="mx-auto">© 2021 All Rights Reserved By <a href="https://html.design/">Free Html Templates</a><br>
-         
             Distributed By <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
-         
          </p>
       </div>
       <!-- jQery -->

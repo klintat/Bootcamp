@@ -44,7 +44,7 @@ class HomeController extends Controller
         {
             $user=Auth::user();
             $product=product::find($id);
-            $cart=new Cart;
+            $cart=new cart;
             $cart->name=$user->name;
             $cart->email=$user->email;
             $cart->phone=$user->phone;
@@ -73,6 +73,23 @@ class HomeController extends Controller
 
     public function show_cart()
     {
-        return view('home.showcart');
+        if(Auth::id())
+        { 
+            $id=Auth::user()->id;
+            $cart=cart::where('user_id','=',$id)->get();
+            return view('home.showcart', compact('cart'));
+        }
+        else
+        {
+            return redirect('login');
+        }
     }
+
+    public function remove_cart($id)
+    {
+        $cart=cart::find($id);
+        $cart->delete();
+        return redirect()->back();
+    }
+       
 }
