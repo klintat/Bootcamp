@@ -58,6 +58,8 @@ class HomeController extends Controller
 
             $cart->quantity=$request->quantity;
 
+            $cart->price=$product->price * $request->quantity;
+
             $cart->save();
             return redirect()->back();
             
