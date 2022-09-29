@@ -20,37 +20,58 @@
       <link href="home/css/style.css" rel="stylesheet" />
       <!-- responsive style -->
       <link href="home/css/responsive.css" rel="stylesheet" />
+
+      <style type="text/css">
+
+        .center
+        {
+            margin: auto;
+            width: 50%;
+            text-align: center;
+            padding: 30px;
+        }
+
+        table,th,td
+        {
+            border: 1px solid grey;
+        }
+
+        .th_deg
+        {
+            font-size: 20px;
+            padding: 5px;
+            background: lightpink;
+        }
+
+      </style>
    </head>
    <body>
       <div class="hero_area">
          <!-- header section strats -->
          @include('home.header')
          <!-- end header section -->
-         <!-- slider section -->
-         @include('home.slider')
-         <!-- end slider section -->
-      </div>
-         <!-- why section -->
-         @include('home.why')
-         <!-- end why section -->
-         
-         <!-- arrival section -->
-         @include('home.new_arival')
-         <!-- end arrival section -->
-         
-         <!-- product section -->
-         @include('home.product')  
-         <!-- end product section -->
-
-         <!-- subscribe section -->
-         @include('home.subscribe')  
-         <!-- end subscribe section -->
-         <!-- client section -->
-         @include('home.client') 
-         <!-- end client section -->
-         <!-- footer start -->
-         @include('home.footer') 
-         <!-- footer end -->
+        <div class="center">
+            <table>
+                <tr>
+                    <th class="th_deg">Product title</th>
+                    <th class="th_deg">Product quantity</th>
+                    <th class="th_deg">Price</th>
+                    <th class="th_deg">Image</th>
+                    <th class="th_deg">Action</th>
+                </tr>
+                <tr>
+                    <td>shirt</td>
+                    <td>11</td>
+                    <td>11</td>
+                    <td></td>
+                    <td>remove</td>
+                </tr>
+            </table>
+        </div>
+        
+        <!-- footer start -->
+        @include('home.footer') 
+        <!-- footer end -->
       <div class="cpy_">
          <p class="mx-auto">© 2021 All Rights Reserved By <a href="https://html.design/">Free Html Templates</a><br>
          
