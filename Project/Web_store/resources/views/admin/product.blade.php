@@ -97,7 +97,7 @@
 
                 <div class="div_design">
                     <label>Product Image Here :</label>
-                    <input type="file" name="image">
+                    <input type="file" name="image" required="">
                 </div>
 
                 <div class="div_design">

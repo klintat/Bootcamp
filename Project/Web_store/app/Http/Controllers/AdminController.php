@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Catagory;
 use App\Models\Product;
 
-
-
 class AdminController extends Controller
 {
     public function view_catagory()
@@ -68,5 +66,12 @@ class AdminController extends Controller
     {
         $product=product::all();
         return view('admin.show_product', compact('product'));
+    }
+
+    public function delete_product($id)
+    {
+        $product=product::find($id);
+        $product->delete();
+        return redirect()->back()->with('message', 'Product Deleted Successfully');
     }
 }
