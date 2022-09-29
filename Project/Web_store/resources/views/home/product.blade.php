@@ -11,8 +11,8 @@
                   <div class="box">
                      <div class="option_container">
                         <div class="options">
-                           <a href="" class="option1">
-                           {{$product->title}}
+                           <a href="{{url('product_details', $product->id)}}" class="option1">
+                           Product Details
                            </a>
                            <a href="" class="option2">
                            Buy Now
@@ -26,17 +26,16 @@
                         <h5>
                            {{$product->title}}
                         </h5>
-                        <h6>
+                        <h6 style="color: blue">
+                           Price
+                           <br>
                            ${{$product->price}}
                         </h6>
                      </div>
                   </div>
                </div>
                @endforeach
-
-               <span style="padding-top: 20px;">
-
-               </span>
-
+            <span style="padding-top: 20px;">
+            </span>
          </div>
       </section>
