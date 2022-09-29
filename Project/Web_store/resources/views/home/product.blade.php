@@ -1,6 +1,6 @@
 <section class="product_section layout_padding">
-         <div class="container">
-            <div class="heading_container heading_center">
+   <div class="container">
+      <div class="heading_container heading_center">
                <h2>
                   Our <span>products</span>
                </h2>
@@ -14,9 +14,17 @@
                            <a href="{{url('product_details', $product->id)}}" class="option1">
                            Product Details
                            </a>
-                           <a href="" class="option2">
-                           Buy Now
-                           </a>
+                           <form action="{{url('add_cart', $product->id)}}" method="POST">
+                              @csrf
+                              <div class="row">
+                                 <div class="col-md-4">
+                                    <input type="number" name="quantity" value="1" min="1" style="width: 100px;">
+                                 </div>
+                                 <div class="col-md-4">   
+                                    <input type="submit" value="Add to Cart" style="">
+                                 </div>
+                              </div>
+                           </form>
                         </div>
                      </div>
                      <div class="img-box">
@@ -37,5 +45,5 @@
                @endforeach
             <span style="padding-top: 20px;">
             </span>
-         </div>
-      </section>
+   </div>
+</section>
