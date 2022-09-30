@@ -124,7 +124,7 @@ class HomeController extends Controller
         return redirect()->back();
     }
 
-    public function cash_order(Request $request)
+    public function cash_order(Request $request) // quantity 
     {
         $user=Auth::user();
         $user_id=$user->id;
