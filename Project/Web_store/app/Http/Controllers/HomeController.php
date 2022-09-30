@@ -93,7 +93,7 @@ class HomeController extends Controller
         return redirect()->back();
     }
 
-    public function cash_order(Request $request) // my logic
+    public function cash_order(Request $request)
     {
         $user=Auth::user();
         $user_id=$user->id;
@@ -109,6 +109,8 @@ class HomeController extends Controller
 
             $order->user_id=$data->user_id;
             $order->product_title=$data->product_title;
+            $order->price=$data->price;
+            $order->quantity=$data->quantity;
             $order->image=$data->image;
             $order->product_id=$data->product_id;
 
@@ -117,9 +119,13 @@ class HomeController extends Controller
             $product = Product::where('id', $data->product_id)->first();
             $product->quantity = $product->quantity - $data->quantity;
             $product->update();
+
+            $cart_id=$data->id;
+            $cart=cart::find($cart_id);
+            $cart->delete();
         }
 
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Order Recived! We will contact you shortly...');
     }
 
 }

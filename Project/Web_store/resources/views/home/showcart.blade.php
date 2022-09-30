@@ -26,7 +26,7 @@
         .center
         {
             margin: auto;
-            width: 50%;
+            width: 45%;
             text-align: center;
             padding: 30px;
         }
@@ -62,6 +62,15 @@
          <!-- header section strats -->
          @include('home.header')
          <!-- end header section -->
+         @if(session()->has('message'))
+
+            <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+    
+            {{session()->get('message')}}
+             </div>
+        @endif
+
         <div class="center">
             <table>
                 <tr>
@@ -72,8 +81,8 @@
                     <th class="th_deg">Action</th>
                 </tr>
 
-                <?php $totalprice=0; ?>
-
+                
+                <?php $totalprice=0;?>
                 @foreach ($cart as $cart)
                 <tr>
                     <td>{{$cart->product_title}}</td>
@@ -82,6 +91,7 @@
                     <td><img class="img_deg "src="/product/{{$cart->image}}"></td>
                     <td><a class="btn btn-danger" onclick="return confirm('Product will be removed from cart!')" href="{{url('remove_cart', $cart->id)}}">Remove Product</a></td>
                 </tr>
+                
                 <?php $totalprice=$totalprice + $cart->price ?>
                 @endforeach
 
@@ -92,9 +102,9 @@
                 <h1 class="total_deg">Total Price : {{$totalprice}}</h1>
             </div>
             <div>
+                <h1 style="font-size: 25px; padding-bottom: 15px;">Cash delivery avilable only!</h1>
                 <h1 style="font-size: 25px; padding-bottom: 15px;">Proceed to Order: </h1>
-                <a href="{{url('cash_order')}}" class="btn btn-danger">Cash On Delivery</a>
-                <a href="" class="btn btn-danger">Pay Using Card</a>
+                <a href="{{url('cash_order')}}" class="btn btn-info" class=center>Buy now</a>
             </div>
 
     </div>
