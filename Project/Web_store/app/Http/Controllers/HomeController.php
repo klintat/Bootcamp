@@ -58,7 +58,23 @@ class HomeController extends Controller
         if(Auth::id())
         {
             $user=Auth::user();
+            $userid=$user->id;
             $product=product::find($id);
+            $product_exist_id=cart::where('Product_id','=',$id)->where('user_id','=',$userid)->get('id')->first();
+            
+            if($product_exist_id)
+            {
+                $cart=cart::find($product_exist_id)->first();
+                $quantity=$cart->quantity;
+                $cart->quantity=$quantity + $request->quantity;
+                $cart->price=$product->price * $cart->quantity;
+                $cart->save();
+
+                return redirect()->back()->with('message','Product Added Successfully');
+            }
+
+            else
+            {
             $cart=new cart;
             $cart->name=$user->name;
             $cart->email=$user->email;
@@ -76,7 +92,8 @@ class HomeController extends Controller
             $cart->price=$product->price * $request->quantity;
 
             $cart->save();
-            return redirect()->back();
+            return redirect()->back()->with('message','Product Added Successfully');
+            }
             
         }
 

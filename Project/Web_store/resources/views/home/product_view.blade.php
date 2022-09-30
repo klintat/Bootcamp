@@ -5,6 +5,11 @@
                   Our <span>products</span>
                </h2>
             </div>
+            @if(session()->has('message'))
+            <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+            {{session()->get('message')}}@endif
+            </div>
             <div class="row">
                @foreach($product as $product)
                <div class="col-sm-6 col-md-4 col-lg-4">
