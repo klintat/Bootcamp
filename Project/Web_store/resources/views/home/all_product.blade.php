@@ -26,30 +26,14 @@
          <!-- header section strats -->
          @include('home.header')
          <!-- end header section -->
-         <!-- slider section -->
-         @include('home.slider')
-         <!-- end slider section -->
-      </div>
-         <!-- why section -->
-         @include('home.why')
-         <!-- end why section -->
-         
-         <!-- arrival section -->
-         @include('home.new_arival')
-         <!-- end arrival section -->
-         
+      
          <!-- product section -->
-         @include('home.product')  
+         @include('home.product_view')  
          <!-- end product section -->
 
-         <!-- footer start -->
-         @include('home.footer') 
-         <!-- footer end -->
       <div class="cpy_">
          <p class="mx-auto">© 2021 All Rights Reserved By <a href="https://html.design/">Free Html Templates</a><br>
-         
             Distributed By <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
-         
          </p>
       </div>
       <!-- jQery -->

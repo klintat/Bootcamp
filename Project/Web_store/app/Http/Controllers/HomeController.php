@@ -142,4 +142,28 @@ class HomeController extends Controller
         return redirect()->back()->with('message', 'Order Recived! We will contact you shortly...');
     }
 
+    
+    public function show_order() 
+    {
+        if(Auth::id()) 
+        {
+            $user=Auth::user();
+            $userid=$user->id;
+
+            $order=order::where('user_id','=', $userid)->get();
+            return view('home.order', compact('order'));
+        } 
+    
+        else 
+        {
+            return redirect('login');
+        }
+    }
+
+    public function product()
+    {
+        $product=Product::all();
+        return view('home.all_product', compact('product'));
+    }
+
 }

@@ -20,38 +20,57 @@
       <link href="home/css/style.css" rel="stylesheet" />
       <!-- responsive style -->
       <link href="home/css/responsive.css" rel="stylesheet" />
+
+      <style type="text/css">
+
+        .center
+        {
+            margin: auto;
+            width: 70%;
+            padding: 30px;
+            text-align: center;
+        }
+
+        table,th,td
+        {
+            border: 1px solid black;
+        }
+
+        .th_deg
+        {
+            padding: 10px;
+            background-color: lightpink;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+      </style>
    </head>
    <body>
-      <div class="hero_area">
          <!-- header section strats -->
          @include('home.header')
-         <!-- end header section -->
-         <!-- slider section -->
-         @include('home.slider')
-         <!-- end slider section -->
-      </div>
-         <!-- why section -->
-         @include('home.why')
-         <!-- end why section -->
-         
-         <!-- arrival section -->
-         @include('home.new_arival')
-         <!-- end arrival section -->
-         
-         <!-- product section -->
-         @include('home.product')  
-         <!-- end product section -->
+        
+         <div class="center">
+            <table>
+                <tr>
+                    <th class="th_deg">Product Title</th>
+                    <th class="th_deg">Quantity</th>
+                    <th class="th_deg">Price</th>
+                    <th class="th_deg">Image</th>
+                </tr>
 
-         <!-- footer start -->
-         @include('home.footer') 
-         <!-- footer end -->
-      <div class="cpy_">
-         <p class="mx-auto">© 2021 All Rights Reserved By <a href="https://html.design/">Free Html Templates</a><br>
-         
-            Distributed By <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
-         
-         </p>
-      </div>
+                @foreach($order as $order)
+                <tr>
+                    <td>{{$order->product_title}}</td>
+                    <td>{{$order->quantity}}</td>
+                    <td>{{$order->price}}</td>
+                    <td>
+                        <img height="100" width="180" src="product/{{$order->image}}">
+                    </td>
+                </tr>
+                @endforeach
+            </table>
+        </div>
       <!-- jQery -->
       <script src="home/js/jquery-3.4.1.min.js"></script>
       <!-- popper js -->
