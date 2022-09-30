@@ -26,7 +26,7 @@
         .center
         {
             margin: auto;
-            width: 45%;
+            width: 50%;
             text-align: center;
             padding: 30px;
         }
@@ -34,6 +34,10 @@
         table,th,td
         {
             border: 1px solid grey;
+        }
+
+        table {
+            margin: auto;
         }
 
         .th_deg
@@ -94,15 +98,13 @@
                 
                 <?php $totalprice=$totalprice + $cart->price ?>
                 @endforeach
-
-                {{$totalprice}}
             </table>
 
             <div>
                 <h1 class="total_deg">Total Price : {{$totalprice}}</h1>
             </div>
             <div>
-                <h1 style="font-size: 25px; padding-bottom: 15px;">Cash delivery avilable only!</h1>
+                <h1 style="font-size: 25px; padding-bottom: 15px;">Cash delivery available only!</h1>
                 <h1 style="font-size: 25px; padding-bottom: 15px;">Proceed to Order: </h1>
                 <a href="{{url('cash_order')}}" class="btn btn-info" class=center>Buy now</a>
             </div>
