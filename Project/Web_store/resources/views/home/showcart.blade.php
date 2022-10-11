@@ -67,10 +67,8 @@
          @include('home.header')
          <!-- end header section -->
          @if(session()->has('message'))
-
             <div class="alert alert-success">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-    
             {{session()->get('message')}}
              </div>
         @endif
@@ -106,7 +104,7 @@
             <div>
                 <h1 style="font-size: 25px; padding-bottom: 15px;">Cash delivery available only!</h1>
                 <h1 style="font-size: 25px; padding-bottom: 15px;">Proceed to Order: </h1>
-                <a href="{{url('cash_order')}}" class="btn btn-info" class=center>Buy now</a>
+                <a href="{{url('cash_order')}}" class="btn btn-info" class=center>Buy now</a> 
             </div>
 
     </div>

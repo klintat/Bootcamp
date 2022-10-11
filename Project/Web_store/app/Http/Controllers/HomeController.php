@@ -14,12 +14,12 @@ class HomeController extends Controller
 
     public function index()
     {
-        $product=Product::all();// if state all -> then all products will be shown
+        $product=Product::all();
         return view('home.userpage', compact('product'));
     }
 
 
-    public function redirect()
+    public function redirect() // admins login 
     {
         $usertype=Auth::user()->usertype;
 
@@ -103,7 +103,7 @@ class HomeController extends Controller
         }
     }
 
-    public function show_cart()
+    public function show_cart()// show cart 
     {
         if(Auth::id())
         { 
@@ -124,7 +124,7 @@ class HomeController extends Controller
         return redirect()->back();
     }
 
-    public function cash_order(Request $request) // quantity 
+    public function cash_order(Request $request) // quantity decreas
     {
         $user=Auth::user();
         $user_id=$user->id;
@@ -160,7 +160,7 @@ class HomeController extends Controller
     }
 
     
-    public function show_order() 
+    public function show_order()
     {
         if(Auth::id()) 
         {

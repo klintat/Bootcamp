@@ -29,13 +29,14 @@ class AdminController extends Controller
         return redirect()->back()->with('message', 'Catagory Deleted Successfully');
     }
 
+
     public function view_product()
     {
         $catagory=catagory::all();
         return view('admin.product', compact('catagory'));
     }
 
-    public function add_product(Request $request)
+    public function add_product(Request $request) // add product
     {
         $product=new product;
 
@@ -59,6 +60,7 @@ class AdminController extends Controller
         return redirect()->back()->with('message','Product Added Successfully');
     }
 
+
     public function show_product()
     {
         $product=product::all();
@@ -72,6 +74,7 @@ class AdminController extends Controller
         return redirect()->back()->with('message', 'Product Deleted Successfully');
     }
 
+
     public function update_product($id)
     {
         $product=product::find($id);
@@ -79,6 +82,7 @@ class AdminController extends Controller
         return view('admin.update_product', compact('product', 'catagory'));
     }
 
+    
     public function update_product_confirm(Request $request, $id)
     {
         $product=product::find($id);
